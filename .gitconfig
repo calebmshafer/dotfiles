@@ -1,0 +1,37 @@
+[credential]
+[user]
+	email = 31107829+calebmshafer@users.noreply.github.com
+	name = Caleb Shafer
+[core]
+	editor = vim
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[alias]
+	ci = commit
+	st = status
+	br = branch
+	co = checkout
+	bdiff = difftool --dir-diff
+	clearRemovedRemotes = branch -vv | cut -c 3- | awk \"$4 ~/gone\\]/ { print $1 }\"
+[difftool "sourcetree"]
+	cmd = '' \"$LOCAL\" \"$REMOTE\"
+[mergetool "sourcetree"]
+	cmd = "'' "
+	trustExitCode = true
+[credential]
+	helper = manager
+[color "status"]
+	changed = red bold
+	untracked = cyan bold
+	added = green bold
+[diff]
+	tool = bc
+[difftool "bc"]
+	path = c:\\Program Files\\Beyond Compare 4\\bcomp.exe
+[merge]
+	tool = bc
+[mergetool "bc"]
+	path = c:\\Program Files\\Beyond Compare 4\\bcomp.exe

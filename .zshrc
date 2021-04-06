@@ -14,6 +14,21 @@ fpath=(~/.zsh $fpath)
 
 autoload -Uz compinit && compinit
 
+# Startup GPG Agent
+
+# This check to make sure the GPG Agent is running and if not, starts it
+if [[ -f "~/.gnupg/.gpg-agent-info" && -n "$(pgrep gpg-agent)" ]]; then    
+  source ~/.gnupg/.gpg-agent-info
+  export GPG_AGENT_INFO
+else
+  eval $(eval $(gpg-agent --daemon --options ~/.gnupg/gpg-agent.conf))
+fi
+
+# Setup nvm
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."
@@ -39,3 +54,6 @@ alias ll="ls -al" # List all files in current directory in long list format
 alias ip="curl icanhazip.com" # Your public IP address
 
 alias bb=python\ /Users/calebshafer/dev/imodel02/src/'BentleyBuild/BentleyBuild.py'
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/terraform terraform

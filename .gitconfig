@@ -16,6 +16,7 @@
 	co = checkout
 	bdiff = difftool --dir-diff
 	clearRemovedRemotes = branch -vv | cut -c 3- | awk \"$4 ~/gone\\]/ { print $1 }\"
+	change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ \\\"$`echo $VAR`\\\" = '$OLD' ]]; then export $VAR='$NEW'; fi\" $@; }; f "
 [difftool "sourcetree"]
 	cmd = '' \"$LOCAL\" \"$REMOTE\"
 [mergetool "sourcetree"]
@@ -27,11 +28,3 @@
 	changed = red bold
 	untracked = cyan bold
 	added = green bold
-[diff]
-	tool = bc
-[difftool "bc"]
-	path = c:\\Program Files\\Beyond Compare 4\\bcomp.exe
-[merge]
-	tool = bc
-[mergetool "bc"]
-	path = c:\\Program Files\\Beyond Compare 4\\bcomp.exe

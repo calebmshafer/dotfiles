@@ -53,7 +53,13 @@ alias sonos='open -a Sonos'
 alias ll="ls -al" # List all files in current directory in long list format
 alias ip="curl icanhazip.com" # Your public IP address
 
-alias bb=python\ /Users/calebshafer/dev/imodel02/src/'BentleyBuild/BentleyBuild.py'
-
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
+
+# Setup a global pnpm store for Rush
+export RUSH_PNPM_STORE_PATH=/Users/calebshafer/dev/github/pnpm-store
+export PATH="/usr/local/opt/python@3.10/bin:$PATH"
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/calebshafer/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
